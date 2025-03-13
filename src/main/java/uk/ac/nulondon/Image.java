@@ -48,50 +48,50 @@ public final class Image {
         if (i < 0 || i >= columns.size()) {
             throw new IndexOutOfBoundsException("Invalid column index");
         }
-    
+
         List<Color> column = columns.get(i);
         List<Color> highlightedColumn = new ArrayList<>();
-    
+
         for (Color color : column) {
             int r = Math.min(255, color.getRed() + 50);  // Boost red to highlight
             int g = color.getGreen();
             int b = color.getBlue();
             highlightedColumn.add(new Color(r, g, b));
         }
-    
+
         columns.set(i, highlightedColumn);
         return highlightedColumn;
     }
-    
+
 
     public List<Color> removeColumn(int i) {
         if (i < 0 || i >= columns.size()) {
             throw new IndexOutOfBoundsException("Invalid column index");
         }
-    
+
         List<Color> removedColumn = columns.remove(i);
         width--;  // Update width since we removed a column
         return removedColumn;
     }
-    
+
 
     public void addColumn(int index, List<Color> column) {
         if (index < 0 || index > columns.size()) {
             throw new IndexOutOfBoundsException("Invalid column index");
         }
-    
+
         columns.add(index, column);
         width++;  // Update width since we added a column
     }
-    
+
 
     public int getGreenest() {
         int maxGreenSum = -1;
         int greenestIndex = -1;
-    
+
         for (int i = 0; i < columns.size(); i++) {
             int greenSum = columns.get(i).stream().mapToInt(Color::getGreen).sum();
-            
+
             if (greenSum > maxGreenSum) {
                 maxGreenSum = greenSum;
                 greenestIndex = i;
@@ -99,5 +99,5 @@ public final class Image {
         }
         return greenestIndex;
     }
-    
+
 }

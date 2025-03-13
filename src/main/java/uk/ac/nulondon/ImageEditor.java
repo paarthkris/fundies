@@ -1,6 +1,5 @@
 package uk.ac.nulondon;
 
-
 import javax.imageio.ImageIO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -20,6 +19,7 @@ public final class ImageEditor {
 
     /**
      * Loads the image from the file path. PLEASE DO NOT CHANGE
+     *
      * @param filePath File path, e. g. /home/img.png
      * @throws IOException If the file is missing or cannot be read
      */
@@ -34,7 +34,6 @@ public final class ImageEditor {
         ImageIO.write(img, "png", new File(filePath));
     }
 
-
     public int getWidth() {
         return image.getWidth();
     }
@@ -43,7 +42,7 @@ public final class ImageEditor {
         removedColumns.push(image.removeColumn(index));
         removedIndices.push(index);
     }
-    
+
     public void undo() {
         if (!removedColumns.isEmpty()) {
             int index = removedIndices.pop();
